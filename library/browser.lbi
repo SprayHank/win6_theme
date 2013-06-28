@@ -1,9 +1,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!--[if lt IE 7]>
-<div class="error chromeframe">您正在使用<strong>性能低下， 漏洞百出， 样式处理不正确</strong>的浏览器。
-<br />
-为了您的隐私安全，减轻计算机运行负荷，及正确展现网站丰富的表现形式等众多原因，请升级您的浏览器.</div>
-<div>您可以通过搜索下列关键字之一，来获取最新版本。若您对此不了解，请咨询相关专业人士。</div>
+<div class="error chromeframe">
+    很抱歉的告诉您，您正在使用的浏览器版本过于陈旧，一些有用的，令人振奋的特性并未被支持。
+    <br />
+    我们也曾努力，希望在您的浏览器上，创造一致的优越的用户体验。
+    但这给开发人员带来巨大的，几倍于现有的工作负担，并且始终未能成功。
+    <br />
+    并且，您的浏览器也存在若干已知的，无法修复的安全问题。我们建议您升级您的浏览器。这并不困难。
+<div>您可以通过搜索下列关键字之一，来获取最新版本。</div>
 <ul>
 <li>Internet Explorer 9</li>
 <li>Mozilla Firefox</li>
