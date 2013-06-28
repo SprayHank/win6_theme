@@ -29,8 +29,9 @@ h1, h2, h3, h4, h5, h6, ul, li, dl, dt, dd, form, img, p { margin: 0; padding: 0
 .inline { display: inline; }
 .none { display: none; }
 .dashed { background: url(images/lineBg.gif) repeat-x left top; color: #3f3f3f; padding: 2px 0 3px 12px; }
-.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
-.clearfix{zoom:1;}
+.clearfix:before, .clearfix:after { content: " "; /* 1 */ display: table; /* 2 */ }
+.clearfix:after { clear: both }
+.clearfix { zoom: 1; }
 *html .clearfix { height: 1%; }
 *+html .clearfix { height: 1%; }
 /*英文强制换行*/
