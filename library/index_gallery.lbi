@@ -1,0 +1,45 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+<div id="gallery" style="overflow:hidden;display:block;width:100%;">
+	<div align="left" style="width:960px;height:100%;display:block;overflow:visible;margin:0 auto;">
+		<div id="spotlight" style="position:absolute;right:-480px;top:0;width:1920px;height:100%;display:block;background:#CCCCCC;">
+			<div id="transmit" class="panels">
+			</div>
+		</div>
+		<ul class="triggers">
+		</ul>
+		<div id="gallery_switch">
+			<div id="gallery_prev">
+			</div>
+			<div id="gallery_next">
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<style type="text/css">
+#gallery .triggers{position:absolute;height:32px;left:0;bottom:5px;width:100%; z-index: 80;  margin: 0; padding: 0;}
+/*#gallery .triggers li {display:inline; padding: 2px 14px;margin:0 4px; font-family: Arial, Helvetica, sans-serif;border:1px solid #0CD3CE;border-left:none;border-right:none; color: #0CD3CE; cursor: pointer ; list-style: none }
+*/
+#gallery .triggers li {margin:0 4px;cursor:pointer;display:block;float:left;width:32px;height:32px;background:url(images/gallery.png) no-repeat;}
+#gallery .triggers li a{display:block;width:100%;height:100%;}
+#gallery .triggers li.current { border-color:#E5A213; color:#E5A213; font-weight: bold;border-width:2px; }
+#gallery_switch{position:absolute;width:190px;height:95px;right:0;bottom:10px;z-index:100;}
+#gallery_prev,#gallery_next{width:95px;height:95px;float:left;background:url(images/gallery_change.png) no-repeat;cursor:pointer;}
+#gallery_prev{background-position:left top;}
+#gallery_next{background-position:right top;}
+#gallery_prev:hover{background-position:left bottom;}
+#gallery_next:hover{background-position:right bottom;}
+</style>
+
+
+<script type="text/javascript">
+(function (w,d){
+w.indexGalleryFolder='{$flash_theme}';
+var gal = d.createElement('script');
+gal.src = w.libPath+'/../../gallery.js';
+d.getElementsByTagName('HEAD')[0].appendChild(gal);
+})(window,document);
+</script>

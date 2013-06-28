@@ -1,0 +1,200 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript">
+var process_request = "{$lang.process_request}";
+</script>
+<div class="box">
+	<div style="background:#EEEEEE;border-bottom:1px solid #CCCCCC;">
+		<div id="page_top_line" class="block" style="height:26px;line-height:26px;">
+			<div class="userInfo f_l" style="width:400px;">
+				<!--<script type="text/javascript" src="js/transport.js"></script>
+				<script type="text/javascript" src="js/utils.js"></script>-->
+				<div id="ECS_MEMBERZONE">{* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'} </div>
+			</div>
+			<style>#append_parent{display:inline;}</style>
+			<!--{if $navigator_list.top}-->
+			<div id="topNav" class="clearfix f_r">
+				<!-- {foreach name=nav_top_list from=$navigator_list.top item=nav} -->
+				<a href="{$nav.url}"{if $nav.opennew eq 1} target="_blank"{/if}> {$nav.name} </a>
+				<!-- {if !$smarty.foreach.nav_top_list.last} --> 
+				| 
+				<!-- {/if} -->
+				<!-- {/foreach} -->
+			</div>
+			<!-- {/if} -->
+		</div>
+	</div>
+</div>
+<div class="block clearfix">
+	<div class="f_l" style="margin:10px 0;">
+		<a href="../index.php" name="top"><img src="../images/logo.gif" /></a>
+	</div>
+	<div id="search"  class="clearfix f_r">
+		<div class="keys f_l">
+			<script type="text/javascript">
+    {literal}
+    <!--
+    function checkSearchForm()
+    {
+        if(document.getElementById('keyword').value)
+        {
+            return true;
+        }
+        else
+        {
+            alert("{$lang.no_keywords}");
+            return false;
+        }
+    }
+    -->
+    {/literal}
+    </script> 
+			{if $searchkeywords}
+			{$lang.hot_search} ：
+			{foreach from=$searchkeywords item=val}
+			<a href="search.php?keywords={$val|escape:url}">{$val}</a>
+			{/foreach}
+			{/if} </div>
+		<form id="searchForm" name="searchForm" method="get" action="search.php" onSubmit="return checkSearchForm()" class="f_r"  style="_position:relative; top:5px;">
+			<select name="category" id="category" class="B_input">
+				<option value="0">{$lang.all_category}</option>
+				
+				
+				
+				
+				
+				
+				
+			
+			
+			
+			
+			
+      {$category_list}
+    
+		
+		
+		
+		
+		
+			
+			
+			
+			
+			
+			
+			</select>
+			<input name="keywords" type="text" id="keyword" value="{$search_keywords|escape}" class="B_input" style="width:110px;"/>
+			<input name="imageField" type="submit" value="" class="go" style="cursor:pointer;" />
+			<a href="search.php?act=advanced_search">{$lang.advanced_search}</a>
+		</form>
+	</div>
+</div>
+<div  class="blank"></div>
+<script type="text/javascript">
+	(function (w,d){var gal = d.createElement('script');gal.src = w.libPath+'../../searchform.js';d.getElementsByTagName('HEAD')[0].appendChild(gal);})(window,document);
+</script>
+<!---->
+
+<div class="_CC8101">
+	<div id="mainNav" class="clearfix">
+		<a href="../index.php"{if $navigator_list.config.index eq 1} class="cur"{/if}>{$lang.home}</a>
+		<a href="javascript:;" id="category_btn">产品分类</a>
+		<!--<a href="javascript:;" id="brands_btn">合作商家</a>         -->
+		<!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav} -->
+		<a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank" {/if} {if $nav.active eq 1} class="cur"{/if}>
+		{$nav.name}
+		</a>
+		<!-- {/foreach} -->
+	</div>
+</div>
+<div id="category_sub" style="display:none;">
+	<div class="block">
+		<div id="category_string"></div>
+		<div class="split_line"></div>
+
+	</div>
+</div>
+<div id="brands_sub" style="display:none;">
+	<div class="block" style="padding-top:20px;">
+		
+		<!-- {foreach from=$brand_list item=brand name="brand_foreach"} -->
+		<!-- {if $brand.brand_logo} -->
+		<a href="{$brand.url}"><img src="data/brandlogo/{$brand.brand_logo}" alt="{$brand.brand_name|escape:html} ({$brand.goods_num})" /></a>
+		<!-- {else} -->
+		<a href="{$brand.url}">{$brand.brand_name|escape:html} {if $brand.goods_num}({$brand.goods_num}){/if}</a>
+		<!-- {/if} -->
+		<!-- {/foreach} -->
+	</div>
+</div>
+<!--search start-->
+<div class="_F4FFBA">
+	<div id="second_nav" class="block clearfix">
+		<a href="#">HOT热销</a>
+		<a href="#">NEW新品</a>
+		<a href="#">BOUTIQUE精品</a>
+		<a href="#">优惠活动</a>
+		<a href="#">团购商品</a>
+		<a href="#">美食美味</a>
+		<a href="#">夺宝奇兵</a>
+		<a href="#">积分商城</a>
+		<a href="javascript:;" id="_share_btn" style="float:right;">share</a>
+	</div>
+</div>
+<div id="_share_sub" class="clearfix" style="position:absolute;z-index:103;display:none;width:100%;left:0;">
+	<div class="block clearfix">
+		<div id="___share_sub" class="clearfix">
+			<div id="share_string"></div>
+			<div class="split_line"></div>
+			<!-- JiaThis Button BEGIN -->
+			<div class="jiathis_style_24x24">
+				<a class="jiathis_button_qzone"></a>
+				<a class="jiathis_button_tsina"></a>
+				<a class="jiathis_button_tqq"></a>
+				<a class="jiathis_button_renren"></a>
+				<a class="jiathis_button_kaixin001"></a>
+				<a class="jiathis_button_douban"></a>
+				<a class="jiathis_button_tsohu"></a>
+				<a class="jiathis_button_taobao"></a>
+				<a class="jiathis_button_baidu"></a>
+				<a class="jiathis_button_t163"></a>
+				<a class="jiathis_button_msn"></a>
+				<a class="jiathis_button_xiaoyou"></a>
+				<a class="jiathis_button_feixin"></a>
+				<a class="jiathis_button_tifeng"></a>
+				<a class="jiathis_button_meilishuo"></a>
+				<a class="jiathis_button_mogujie"></a>
+				<a class="jiathis_button_hi"></a>
+				<a class="jiathis_button_miliao"></a>
+				<a class="jiathis_button_googleplus"></a>
+				<a class="jiathis_button_google"></a>
+				<a class="jiathis_button_tianya"></a>
+				<a class="jiathis_button_mop"></a>
+				<a class="jiathis_button_huaban"></a>
+				<a class="jiathis_button_ydnote"></a>
+				<a class="jiathis_button_youdao"></a>
+				<a class="jiathis_button_gmail"></a>
+				<a class="jiathis_button_ymail"></a>
+				<a class="jiathis_button_139mail"></a>
+				<a class="jiathis_button_txinhua"></a>
+				<a class="jiathis_button_toeeee"></a>
+				<a class="jiathis_button_qingsina"></a>
+				<a class="jiathis_button_poco"></a>
+				<a class="jiathis_button_139"></a>
+				<a class="jiathis_button_fb"></a>
+				<a class="jiathis_button_tpeople"></a>
+				<a class="jiathis_button_ifensi"></a>
+				<a class="jiathis_button_189share"></a>
+				<a class="jiathis_button_qq"></a>
+				<a class="jiathis_button_51"></a>
+				<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+				<a class="jiathis_counter_style"></a>
+			</div>
+			<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1344109729532517" charset="utf-8"></script>
+			<!-- JiaThis Button END -->
+		</div>
+	</div>
+</div>
+<!--search end-->
+<script type="text/javascript">
+(function (w,d){var gal = d.createElement('script');gal.src = w.libPath+'../../navsub.js';d.getElementsByTagName('HEAD')[0].appendChild(gal);})(window,document);
+</script>

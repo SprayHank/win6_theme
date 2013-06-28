@@ -1,0 +1,35 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<div class="block">
+    <div class="helpTitBg clearfix">
+        <!--{if $helps}-->
+        <!-- {foreach from=$helps item=help_cat} -->
+        <dl>
+          <dt><a href='{$help_cat.cat_id}' title="{$help_cat.cat_name}">{$help_cat.cat_name}</a></dt>
+          <!-- {foreach from=$help_cat.article item=item} -->
+          <dd><a href="{$item.url}" title="{$item.title|escape:html}">{$item.short_title}</a></dd>
+          <!-- {/foreach} -->
+        </dl>
+        <!-- {/foreach} -->
+        <!--{/if}-->
+        <div id="service">
+            <div style="position: absolute;top: 42px;left: 88px;color: #999;">
+            <!-- 邮件{if $service_email} -->
+             {$service_email}<br />
+            <!-- 结束邮件{/if} -->
+            </div>
+            <div style="position: absolute;top: 83px;left: 97px;font-size: 16px;">
+            <!-- 淘宝旺旺 {foreach from=$ww item=im} -->
+            <!-- {if $im} -->
+            <a href="http://amos1.taobao.com/msg.ww?v=2&uid={$im|escape:u8_url}&s=2" target="_blank" style="color: #999;"><img src="http://amos1.taobao.com/online.ww?v=2&uid={$im|escape:u8_url}&s=2" width="16" height="16" border="0" alt="淘宝旺旺" />{$im}</a><br />
+            <!-- {/if} -->
+            <!--{/foreach} 结束淘宝旺旺 -->
+                    <!-- QQ 号码 {foreach from=$qq item=im} -->
+                    <!-- {if $im} -->
+                    <a href="http://wpa.qq.com/msgrd?V=1&amp;Uin={$im}&amp;Site={$shop_name}&amp;Menu=yes" target="_blank" style="color: #999;"><img src="http://wpa.qq.com/pa?p=1:{$im}:4" height="16" border="0" alt="QQ" /> {$im}</a>
+                        <!-- {/if} -->
+                    <!-- {/foreach} 结束QQ号码 -->
+            </div>
+        </div>
+    </div>
+</div>

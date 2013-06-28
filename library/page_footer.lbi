@@ -1,0 +1,90 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--底部导航 start-->
+<div id="bottomNav" class="box_1">
+    <div class="bNavList clearfix">
+        <div class="f_l">
+            <!-- {if $navigator_list.bottom} -->
+            <!-- {foreach name=nav_bottom_list from=$navigator_list.bottom item=nav} -->
+            <a href="{$nav.url}" <!-- {if $nav.opennew eq 1} --> target="_blank"
+            <!-- {/if} -->>{$nav.name}
+            </a>
+            <!-- {if !$smarty.foreach.nav_bottom_list.last} -->
+            &nbsp;
+            <!-- {/if} -->
+            <!-- {/foreach} -->
+            <!-- {/if} -->
+        </div>
+        <div class="f_r" style="overflow: visible;">
+            <a href="#top"><img src="images/bnt_top.gif" class="f_r"/></a>
+            <img width="10" height="10"
+                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAALSURBVBhXY2AAAgAABQABqtXIUQAAAABJRU5ErkJggg=="
+                 class="f_r"/>
+            <a href="../index.php"><img src="images/bnt_home.gif" class="f_r"/></a>
+            <img width="70" height="10"
+                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAALSURBVBhXY2AAAgAABQABqtXIUQAAAABJRU5ErkJggg=="
+                 class="f_r"/>
+            <a href="{$feed_url}"><img src="../images/xml_rss2.gif" alt="rss" class="f_r"/></a>
+        </div>
+    </div>
+</div>
+<!--底部导航 end-->
+<div class="blank"></div>
+<div class="blank"></div>
+
+<!--支持服务 start-->
+<div class="block">
+    <div style="width:904px;height:128px;background:url(images/feature.png);">
+
+    </div>
+</div>
+<div class="blank"></div>
+<div class="blank5"></div>
+<!--支持服务 end-->
+<!--版权 start-->
+<div class="footer">
+<div id="footer">
+    <style>
+    </style>
+    <div class="f_l">
+        {$copyright}
+        <br/>
+        {foreach from=$lang.p_y item=pv}{$pv}{/foreach}{$licensed}
+    </div>
+    <div align="right" class="f_r text">
+        <!-- ICP 证书{if $icp_number} -->
+        {$lang.icp_number}:
+        <a href="http://www.miibeian.gov.cn/" target="_blank">{$icp_number}</a>
+        <!-- 结束ICP 证书{/if} -->
+        <!-- 客服电话{if $service_phone} -->
+        Tel: {$service_phone}
+        <!-- 结束客服电话{/if} -->
+        <br/>
+        {insert name='query_info'}
+    </div>
+    <div class="blank"></div>
+    <div class="text">
+        {$shop_address} {$shop_postcode}
+        <!-- Yahoo Messenger {foreach from=$ym item=im} -->
+            <!-- {if $im} -->
+        <a href="http://edit.yahoo.com/config/send_webmesg?.target={$im}n&.src=pg" target="_blank"><img
+                    src="../images/yahoo.gif" width="18" height="17" border="0" alt="Yahoo Messenger"/> {$im}</a>
+        <!-- {/if} -->
+        <!-- {/foreach} 结束Yahoo Messenger -->
+        <!-- MSN Messenger {foreach from=$msn item=im} -->
+            <!-- {if $im} -->
+    <img src="../images/msn.gif" width="18" height="17" border="0" alt="MSN"/>
+        <a href="msnim:chat?contact={$im}">{$im}</a>
+        <!-- {/if} -->
+        <!-- {/foreach} 结束MSN Messenger -->
+        <!-- Skype {foreach from=$skype item=im} -->
+            <!-- {if $im} -->
+    <img src="http://mystatus.skype.com/smallclassic/{$im|escape:url}" alt="Skype"/>
+        <a href="skype:{$im|escape:url}?call">{$im}</a>
+        <!-- {/if} -->
+        <!-- {/foreach} -->
+        {if $stats_code}
+            <div align="left">{$stats_code}</div>
+        {/if}
+    </div>
+</div>
+</div>
