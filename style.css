@@ -378,8 +378,10 @@ top: 3px; cursor: pointer; }
 /* ====================
      ots部分
 ==================== */
-#ots_l { width: 750px; height: 270px; }
+#ots_l { width: 750px; /*height: 270px;*/ }
 #officialblog { margin-top: 7px; }
+#ots_l_t_l a { border: 1px solid #E1E0DF; display: block; overflow: hidden; }
+#ots_l_t_l a:hover { border: 1px solid #ABC708; }
 #ots_l_b { margin-top: 8px; clear: both; }
 #ots_l_b_l { width: 210px; height: 95px; border: 1px solid #E7E7E7; position: relative; }
 #ots_l_b_r { width: 528px; height: 95px; border: 1px solid #E7E7E7; position: relative; }
@@ -405,6 +407,7 @@ top: 3px; cursor: pointer; }
 .ots_r_b li { width: 100%; text-align: left; height: 22px; line-height: 22px; font-size: 12px; }
 .ots_r_b a { color: #A8A8A8; text-decoration: none; }
 .ots_r_b a:hover { color: #ABC708; text-decoration: none; }
+#ordertracker_text { position: absolute; left: 8px; top: 13px; line-height: 18px; font-size: 12px; color: #808080; }
 /**/
 
 /*商品分类*/
