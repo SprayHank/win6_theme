@@ -1,16 +1,16 @@
-
-;define("jquery/jqueryui/fg.menu", ['$'],function(require, exports, module) {
+;
+define("jquery/jqueryui/fg.menu", ['$'], function(require, exports, module) {
 /*--------------------------------------------------------------------
-Scripts for creating and manipulating custom menus based on standard <ul> markup
-Version: 3.0, 03.31.2009
+ Scripts for creating and manipulating custom menus based on standard <ul> markup
+ Version: 3.0, 03.31.2009
 
-By: Maggie Costello Wachs (maggie@filamentgroup.com) and Scott Jehl (scott@filamentgroup.com)
-	http://www.filamentgroup.com
-	* reference articles: http://www.filamentgroup.com/lab/jquery_ipod_style_drilldown_menu/
-		
-Copyright (c) 2009 Filament Group
-Dual licensed under the MIT (filamentgroup.com/examples/mit-license.txt) and GPL (filamentgroup.com/examples/gpl-license.txt) licenses.
---------------------------------------------------------------------*/
+ By: Maggie Costello Wachs (maggie@filamentgroup.com) and Scott Jehl (scott@filamentgroup.com)
+ http://www.filamentgroup.com
+ * reference articles: http://www.filamentgroup.com/lab/jquery_ipod_style_drilldown_menu/
+
+ Copyright (c) 2009 Filament Group
+ Dual licensed under the MIT (filamentgroup.com/examples/mit-license.txt) and GPL (filamentgroup.com/examples/gpl-license.txt) licenses.
+ --------------------------------------------------------------------*/
 var jQuery = require('$');
 (function($) {
 
@@ -22,23 +22,16 @@ $.fn.menu = function(options) {
 	var m = new Menu(caller, options);
 	allUIMenus.push(m);
 
-	$(this)
-		.mousedown(function() {
-			if(!m.menuOpen) {
-				m.showLoading();
-			}
-			;
-		})
-		.click(function() {
-			if(m.menuOpen == false) {
-				m.showMenu();
-			}
-			else {
-				m.kill();
-			}
-			;
-			return false;
-		});
+	$(this).mousedown(function() {
+		!m.menuOpen && m.showLoading();
+	}).click(function() {
+		if(m.menuOpen == false) {
+			m.showMenu();
+		} else {
+			m.kill();
+		}
+		return false;
+	});
 };
 
 function Menu(caller, options) {
@@ -85,10 +78,7 @@ function Menu(caller, options) {
 
 	var killAllMenus = function() {
 		$.each(allUIMenus, function(i) {
-			if(allUIMenus[i].menuOpen) {
-				allUIMenus[i].kill();
-			}
-			;
+			allUIMenus[i].menuOpen && allUIMenus[i].kill();
 		});
 	};
 
@@ -101,19 +91,15 @@ function Menu(caller, options) {
 		if(options.flyOutOnState) {
 			container.find('li a').removeClass(options.flyOutOnState);
 		}
-		;
 		if(options.callerOnState) {
 			caller.removeClass(options.callerOnState);
 		}
-		;
 		if(container.is('.fg-menu-ipod')) {
 			menu.resetDrilldownMenu();
 		}
-		;
 		if(container.is('.fg-menu-flyout')) {
 			menu.resetFlyoutMenu();
 		}
-		;
 		container.parent().hide();
 		menu.menuOpen = false;
 		$(document).unbind('click', killAllMenus);
@@ -126,10 +112,7 @@ function Menu(caller, options) {
 
 	this.showMenu = function() {
 		killAllMenus();
-		if(!menu.menuExists) {
-			menu.create()
-		}
-		;
+		menu.menuExists || menu.create();
 		caller
 			.addClass('fg-menu-open')
 			.addClass(options.callerOnState);
@@ -147,11 +130,9 @@ function Menu(caller, options) {
 			var e;
 			if(event.which != "") {
 				e = event.which;
-			}
-			else if(event.charCode != "") {
+			} else if(event.charCode != "") {
 				e = event.charCode;
-			}
-			else if(event.keyCode != "") {
+			} else if(event.keyCode != "") {
 				e = event.keyCode;
 			}
 
@@ -164,26 +145,20 @@ function Menu(caller, options) {
 						if($('.' + options.flyOutOnState).size() > 0) {
 							$('.' + options.flyOutOnState).trigger('mouseover');
 						}
-						;
 					}
-					;
 
 					if(menuType == 'ipod') {
 						$(event.target).trigger('mouseout');
 						if($('.fg-menu-footer').find('a').size() > 0) {
 							$('.fg-menu-footer').find('a').trigger('click');
 						}
-						;
 						if($('.fg-menu-header').find('a').size() > 0) {
 							$('.fg-menu-current-crumb').prev().find('a').trigger('click');
 						}
-						;
 						if($('.fg-menu-current').prev().is('.fg-menu-indicator')) {
 							$('.fg-menu-current').prev().trigger('mouseover');
 						}
-						;
 					}
-					;
 					return false;
 					break;
 
@@ -194,7 +169,6 @@ function Menu(caller, options) {
 							$(event.target).trigger('mouseout');
 							prevLink.trigger('mouseover');
 						}
-						;
 					}
 					else {
 						container.find('a:eq(0)').trigger('mouseover');
@@ -206,16 +180,13 @@ function Menu(caller, options) {
 					if($(event.target).is('.fg-menu-indicator')) {
 						if(menuType == 'flyout') {
 							$(event.target).next().find('a:eq(0)').trigger('mouseover');
-						}
-						else if(menuType == 'ipod') {
+						}						else if(menuType == 'ipod') {
 							$(event.target).trigger('click');
 							setTimeout(function() {
 								$(event.target).next().find('a:eq(0)').trigger('mouseover');
 							}, options.crossSpeed);
 						}
-						;
 					}
-					;
 					return false;
 					break;
 
@@ -226,9 +197,7 @@ function Menu(caller, options) {
 							$(event.target).trigger('mouseout');
 							nextLink.trigger('mouseover');
 						}
-						;
-					}
-					else {
+					}					else {
 						container.find('a:eq(0)').trigger('mouseover');
 					}
 					return false;
@@ -245,10 +214,8 @@ function Menu(caller, options) {
 							$(event.target).next().find('a:eq(0)').trigger('mouseover');
 						}, options.crossSpeed);
 					}
-					;
 					break;
 			}
-			;
 		});
 	};
 
@@ -266,18 +233,16 @@ function Menu(caller, options) {
 		if(container.find('ul').size() > 1) {
 			if(options.flyOut) {
 				menu.flyout(container, options);
-			}
-			else {
+			} else {
 				menu.drilldown(container, options);
 			}
-		}
-		else {
+		} else {
 			container.find('a').click(function() {
 				menu.chooseItem(this);
 				return false;
 			});
 		}
-		;
+
 
 		if(options.linkHover) {
 			var allLinks = container.find('.fg-menu li a');
@@ -292,7 +257,6 @@ function Menu(caller, options) {
 				}
 			);
 		}
-		;
 
 		if(options.linkHoverSecondary) {
 			container.find('.fg-menu li').hover(
@@ -308,7 +272,6 @@ function Menu(caller, options) {
 				}
 			);
 		}
-		;
 
 		menu.setPosition(container, caller, options);
 		menu.menuExists = true;
@@ -345,11 +308,9 @@ Menu.prototype.flyout = function(container, options) {
 				if(!fitVertical(subList, $(this).offset().top)) {
 					subList.css({ top: 'auto', bottom: 0 });
 				}
-				;
 				if(!fitHorizontal(subList, $(this).offset().left + 100)) {
 					subList.css({ left: 'auto', right: linkWidth, 'z-index': 999 });
 				}
-				;
 				showTimer = setTimeout(function() {
 					subList.addClass('ui-widget-content').show(options.showSpeed).attr('aria-expanded', 'true');
 				}, 300);
@@ -401,18 +362,15 @@ Menu.prototype.drilldown = function(container, options) {
 
 	if(options.backLink) {
 		breadcrumb.addClass('fg-menu-footer').appendTo(container).hide();
-	}
-	else {
+	} else {
 		breadcrumb.addClass('fg-menu-header').prependTo(container);
 	}
-	;
 	breadcrumb.append(crumbDefaultHeader);
 
 	var checkMenuHeight = function(el) {
 		if(el.height() > options.maxHeight) {
 			el.addClass('fg-menu-scroll')
 		}
-		;
 		el.css({ height: options.maxHeight });
 	};
 
@@ -447,91 +405,84 @@ Menu.prototype.drilldown = function(container, options) {
 	topList.find('a').each(function() {
 		// if the link opens a child menu:
 		if($(this).next().is('ul')) {
-			$(this)
-				.addClass('fg-menu-indicator')
-				.each(function() {
-					$(this).html('<span>' + $(this).text() + '</span><span class="ui-icon ' + options.nextMenuLink + '"></span>');
-				})
-				.click(function() { // ----- show the next menu
-					var nextList = $(this).next();
-					var parentUl = $(this).parents('ul:eq(0)');
-					var parentLeft = (parentUl.is('.fg-menu-content')) ? 0 : parseFloat(topList.css('left'));
-					var nextLeftVal = Math.round(parentLeft - parseFloat(container.width()));
-					var footer = $('.fg-menu-footer');
+			$(this).addClass('fg-menu-indicator').each(function() {
+				$(this).html('<span>' + $(this).text() + '</span><span class="ui-icon ' + options.nextMenuLink + '"></span>');
+			}).click(function() { // ----- show the next menu
+				var nextList = $(this).next();
+				var parentUl = $(this).parents('ul:eq(0)');
+				var parentLeft = (parentUl.is('.fg-menu-content')) ? 0 : parseFloat(topList.css('left'));
+				var nextLeftVal = Math.round(parentLeft - parseFloat(container.width()));
+				var footer = $('.fg-menu-footer');
 
-					// show next menu
-					resetChildMenu(parentUl);
-					checkMenuHeight(nextList);
-					topList.animate({ left: nextLeftVal }, options.crossSpeed);
-					nextList.show().addClass('fg-menu-current').attr('aria-expanded', 'true');
+				// show next menu
+				resetChildMenu(parentUl);
+				checkMenuHeight(nextList);
+				topList.animate({ left: nextLeftVal }, options.crossSpeed);
+				nextList.show().addClass('fg-menu-current').attr('aria-expanded', 'true');
 
-					var setPrevMenu = function(backlink) {
-						var b = backlink;
-						var c = $('.fg-menu-current');
-						var prevList = c.parents('ul:eq(0)');
-						c.hide().attr('aria-expanded', 'false');
-						resetChildMenu(c);
-						checkMenuHeight(prevList);
-						prevList.addClass('fg-menu-current').attr('aria-expanded', 'true');
-						if(prevList.hasClass('fg-menu-content')) {
-							b.remove();
-							footer.hide();
-						}
-						;
-					};
+				var setPrevMenu = function(backlink) {
+					var b = backlink;
+					var c = $('.fg-menu-current');
+					var prevList = c.parents('ul:eq(0)');
+					c.hide().attr('aria-expanded', 'false');
+					resetChildMenu(c);
+					checkMenuHeight(prevList);
+					prevList.addClass('fg-menu-current').attr('aria-expanded', 'true');
+					if(prevList.hasClass('fg-menu-content')) {
+						b.remove();
+						footer.hide();
+					}
+				};
 
-					// initialize "back" link
-					if(options.backLink) {
-						if(footer.find('a').size() == 0) {
-							footer.show();
-							$('<a href="#"><span class="ui-icon ui-icon-triangle-1-w"></span> <span>Back</span></a>')
-								.appendTo(footer)
-								.click(function() { // ----- show the previous menu
-									var b = $(this);
-									var prevLeftVal = parseFloat(topList.css('left')) + container.width();
-									topList.animate({ left: prevLeftVal }, options.crossSpeed, function() {
-										setPrevMenu(b);
-									});
-									return false;
+				// initialize "back" link
+				if(options.backLink) {
+					if(footer.find('a').size() == 0) {
+						footer.show();
+						$('<a href="#"><span class="ui-icon ui-icon-triangle-1-w"></span><span>Back</span></a>').appendTo(footer)
+							.click(function() { // ----- show the previous menu
+								var b = $(this);
+								var prevLeftVal = parseFloat(topList.css('left')) + container.width();
+								topList.animate({ left: prevLeftVal }, options.crossSpeed, function() {
+									setPrevMenu(b);
 								});
-						}
-					}
-					// or initialize top breadcrumb
-					else {
-						if(breadcrumb.find('li').size() == 1) {
-							breadcrumb.empty().append(firstCrumb);
-							firstCrumb.find('a').click(function() {
-								menu.resetDrilldownMenu();
 								return false;
 							});
-						}
-						$('.fg-menu-current-crumb').removeClass('fg-menu-current-crumb');
-						var crumbText = $(this).find('span:eq(0)').text();
-						var newCrumb = $('<li class="fg-menu-current-crumb"><a href="javascript://" class="fg-menu-crumb">' + crumbText + '</a></li>');
-						newCrumb
-							.appendTo(breadcrumb)
-							.find('a').click(function() {
-								if($(this).parent().is('.fg-menu-current-crumb')) {
-									menu.chooseItem(this);
-								}
-								else {
-									var newLeftVal = -($('.fg-menu-current').parents('ul').size() - 1) * 180;
-									topList.animate({ left: newLeftVal }, options.crossSpeed, function() {
-										setPrevMenu();
-									});
+					}
+				}
+				// or initialize top breadcrumb
+				else {
+					if(breadcrumb.find('li').size() == 1) {
+						breadcrumb.empty().append(firstCrumb);
+						firstCrumb.find('a').click(function() {
+							menu.resetDrilldownMenu();
+							return false;
+						});
+					}
+					$('.fg-menu-current-crumb').removeClass('fg-menu-current-crumb');
+					var crumbText = $(this).find('span:eq(0)').text();
+					var newCrumb = $('<li class="fg-menu-current-crumb"><a href="javascript://" class="fg-menu-crumb">' + crumbText + '</a></li>');
+					newCrumb
+						.appendTo(breadcrumb)
+						.find('a').click(function() {
+							if($(this).parent().is('.fg-menu-current-crumb')) {
+								menu.chooseItem(this);
+							}
+							else {
+								var newLeftVal = -($('.fg-menu-current').parents('ul').size() - 1) * 180;
+								topList.animate({ left: newLeftVal }, options.crossSpeed, function() {
+									setPrevMenu();
+								});
 
-									// make this the current crumb, delete all breadcrumbs after this one, and navigate to the relevant menu
-									$(this).parent().addClass('fg-menu-current-crumb').find('span').remove();
-									$(this).parent().nextAll().remove();
-								}
-								;
-								return false;
-							});
-						newCrumb.prev().append(' <span class="ui-icon ' + options.nextCrumbLink + '"></span>');
-					}
-					;
-					return false;
-				});
+								// make this the current crumb, delete all breadcrumbs after this one, and navigate to the relevant menu
+								$(this).parent().addClass('fg-menu-current-crumb').find('span').remove();
+								$(this).parent().nextAll().remove();
+							}
+							return false;
+						});
+					newCrumb.prev().append(' <span class="ui-icon ' + options.nextCrumbLink + '"></span>');
+				}
+				return false;
+			});
 		}
 		// if the link is a leaf node (doesn't open a child menu)
 		else {
@@ -540,7 +491,6 @@ Menu.prototype.drilldown = function(container, options) {
 				return false;
 			});
 		}
-		;
 	});
 };
 
@@ -586,7 +536,6 @@ Menu.prototype.setPosition = function(widget, caller, options) {
 			xVal = dims.refW;
 			break;
 	}
-	;
 
 	// get Y pos
 	switch(options.positionOpts.posY) {
@@ -600,7 +549,6 @@ Menu.prototype.setPosition = function(widget, caller, options) {
 			yVal = dims.refH;
 			break;
 	}
-	;
 
 	// add the offsets (zero by default)
 	xVal += options.positionOpts.offsetX;
@@ -612,14 +560,12 @@ Menu.prototype.setPosition = function(widget, caller, options) {
 		if(options.positionOpts.detectV && !fitVertical(el)) {
 			el.css({ bottom: 'auto', top: yVal });
 		}
-	}
-	else {
+	} else {
 		el.css({ bottom: 'auto', top: yVal });
 		if(options.positionOpts.detectV && !fitVertical(el)) {
 			el.css({ top: 'auto', bottom: yVal });
 		}
 	}
-	;
 
 	// and horizontally
 	if(options.positionOpts.directionH == 'left') {
@@ -627,14 +573,12 @@ Menu.prototype.setPosition = function(widget, caller, options) {
 		if(options.positionOpts.detectH && !fitHorizontal(el)) {
 			el.css({ right: 'auto', left: xVal });
 		}
-	}
-	else {
+	} else {
 		el.css({ right: 'auto', left: xVal });
 		if(options.positionOpts.detectH && !fitHorizontal(el)) {
 			el.css({ left: 'auto', right: xVal });
 		}
 	}
-	;
 
 	// if specified, clone the referring element and position it so that it appears on top of the menu
 	if(options.positionOpts.linkToFront) {
@@ -648,7 +592,6 @@ Menu.prototype.setPosition = function(widget, caller, options) {
 			height: referrer.height()
 		}).insertAfter(el);
 	}
-	;
 };
 
 
