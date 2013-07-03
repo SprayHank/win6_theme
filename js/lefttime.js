@@ -21,147 +21,112 @@ var Temp;
 var timerID = null;
 var timerRunning = false;
 
-function showtime()
-{
-  now = new Date();
-  var ts = parseInt((startTime - now.getTime()) / 1000) + auctionDate;
-  var dateLeft = 0;
-  var hourLeft = 0;
-  var minuteLeft = 0;
-  var secondLeft = 0;
-  var hourZero = '';
-  var minuteZero = '';
-  var secondZero = '';
-  if (ts < 0)
-  {
-    ts = 0;
-    CurHour = 0;
-    CurMinute = 0;
-    CurSecond = 0;
-  }
-  else
-  {
-    dateLeft = parseInt(ts / 86400);
-    ts = ts - dateLeft * 86400;
-    hourLeft = parseInt(ts / 3600);
-    ts = ts - hourLeft * 3600;
-    minuteLeft = parseInt(ts / 60);
-    secondLeft = ts - minuteLeft * 60;
-  }
+function showtime() {
+	now = new Date();
+	var ts = parseInt((startTime - now.getTime()) / 1000) + auctionDate;
+	var dateLeft = 0;
+	var hourLeft = 0;
+	var minuteLeft = 0;
+	var secondLeft = 0;
+	var hourZero = '';
+	var minuteZero = '';
+	var secondZero = '';
+	if(ts < 0) {
+		ts = 0;
+		CurHour = 0;
+		CurMinute = 0;
+		CurSecond = 0;
+	}
+	else {
+		dateLeft = parseInt(ts / 86400);
+		ts = ts - dateLeft * 86400;
+		hourLeft = parseInt(ts / 3600);
+		ts = ts - hourLeft * 3600;
+		minuteLeft = parseInt(ts / 60);
+		secondLeft = ts - minuteLeft * 60;
+	}
 
-  if (hourLeft < 10)
-  {
-    hourZero = '0';
-  }
-  if (minuteLeft < 10)
-  {
-    minuteZero = '0';
-  }
-  if (secondLeft < 10)
-  {
-    secondZero = '0';
-  }
+	if(hourLeft < 10) {
+		hourZero = '0';
+	}
+	if(minuteLeft < 10) {
+		minuteZero = '0';
+	}
+	if(secondLeft < 10) {
+		secondZero = '0';
+	}
 
-  if (dateLeft > 0)
-  {
-    Temp = dateLeft + _day + hourZero + hourLeft + _hour + minuteZero + minuteLeft + _minute + secondZero + secondLeft + _second;
-  }
-  else
-  {
-    if (hourLeft > 0)
-    {
-      Temp = hourLeft + _hour + minuteZero + minuteLeft + _minute + secondZero + secondLeft + _second;
-    }
-    else
-    {
-      if (minuteLeft > 0)
-      {
-        Temp = minuteLeft + _minute + secondZero + secondLeft + _second;
-      }
-      else
-      {
-        if (secondLeft > 0)
-        {
-          Temp = secondLeft + _second;
-        }
-        else
-        {
-          Temp = '';
-        }
-      }
-    }
-  }
+	if(dateLeft > 0) {
+		Temp = dateLeft + _day + hourZero + hourLeft + _hour + minuteZero + minuteLeft + _minute + secondZero + secondLeft + _second;
+	} else {
+		if(hourLeft > 0) {
+			Temp = hourLeft + _hour + minuteZero + minuteLeft + _minute + secondZero + secondLeft + _second;
+		} else {
+			if(minuteLeft > 0) {
+				Temp = minuteLeft + _minute + secondZero + secondLeft + _second;
+			} else {
+				if(secondLeft > 0) {
+					Temp = secondLeft + _second;
+				} else {
+					Temp = '';
+				}
+			}
+		}
+	}
 
-  if (auctionDate <= 0 || Temp == '')
-  {
-    Temp = "<strong>" + _end + "</strong>";
-    stopclock();
-  }
+	if(auctionDate <= 0 || Temp == '') {
+		Temp = "<strong>" + _end + "</strong>";
+		stopclock();
+	}
 
-  if (document.getElementById(showTime))
-  {
-    document.getElementById(showTime).innerHTML = Temp;
-  }
+	if(document.getElementById(showTime)) {
+		document.getElementById(showTime).innerHTML = Temp;
+	}
 
-  timerID = setTimeout("showtime()", 1000);
-  timerRunning = true;
+	timerID = setTimeout("showtime()", 1000);
+	timerRunning = true;
 }
 
 var timerID = null;
 var timerRunning = false;
-function stopclock()
-{
-  if (timerRunning)
-  {
-    clearTimeout(timerID);
-  }
-  timerRunning = false;
+function stopclock() {
+	if(timerRunning) {
+		clearTimeout(timerID);
+	}
+	timerRunning = false;
 }
 
-function macauclock()
-{
-  stopclock();
-  showtime();
+function macauclock() {
+	stopclock();
+	showtime();
 }
 
-function onload_leftTime(now_time)
-{
-  /* 第一次运行时初始化语言项目 */
-  try
-  {
-    _GMTEndTime = gmt_end_time;
-    // 剩余时间
-    _day = day;
-    _hour = hour;
-    _minute = minute;
-    _second = second;
-    _end = end;
-  }
-  catch (e)
-  {
-  }
-  if (_GMTEndTime > 0)
-  {
-    if (now_time == undefined)
-    {
-      var tmp_val = parseInt(_GMTEndTime) - parseInt(cur_date.getTime() / 1000 + cur_date.getTimezoneOffset() * 60);
-    }
-    else
-    {
-      var tmp_val = parseInt(_GMTEndTime) - now_time;
-    }
-    if (tmp_val > 0)
-    {
-      auctionDate = tmp_val;
-    }
-  }
+function onload_leftTime(now_time) {
+	/* 第一次运行时初始化语言项目 */
+	try {
+		_GMTEndTime = gmt_end_time;
+		// 剩余时间
+		_day = day;
+		_hour = hour;
+		_minute = minute;
+		_second = second;
+		_end = end;
+	} catch(e) {
+	}
+	if(_GMTEndTime > 0) {
+		if(now_time == undefined) {
+			var tmp_val = parseInt(_GMTEndTime) - parseInt(cur_date.getTime() / 1000 + cur_date.getTimezoneOffset() * 60);
+		} else {
+			var tmp_val = parseInt(_GMTEndTime) - now_time;
+		}
+		if(tmp_val > 0) {
+			auctionDate = tmp_val;
+		}
+	}
 
-  macauclock();
-  try
-  {
-    initprovcity();
-  }
-  catch (e)
-  {
-  }
+	macauclock();
+	try {
+		initprovcity();
+	} catch(e) {
+	}
 }
