@@ -23,7 +23,7 @@ $.fn.menu = function(options) {
 	allUIMenus.push(m);
 
 	$(this).mousedown(function() {
-		!m.menuOpen && m.showLoading();
+		m.menuOpen || m.showLoading();
 	}).click(function() {
 		if(m.menuOpen == false) {
 			m.showMenu();
@@ -169,8 +169,7 @@ function Menu(caller, options) {
 							$(event.target).trigger('mouseout');
 							prevLink.trigger('mouseover');
 						}
-					}
-					else {
+					} else {
 						container.find('a:eq(0)').trigger('mouseover');
 					}
 					return false;
@@ -180,7 +179,7 @@ function Menu(caller, options) {
 					if($(event.target).is('.fg-menu-indicator')) {
 						if(menuType == 'flyout') {
 							$(event.target).next().find('a:eq(0)').trigger('mouseover');
-						}						else if(menuType == 'ipod') {
+						} else if(menuType == 'ipod') {
 							$(event.target).trigger('click');
 							setTimeout(function() {
 								$(event.target).next().find('a:eq(0)').trigger('mouseover');
@@ -197,7 +196,7 @@ function Menu(caller, options) {
 							$(event.target).trigger('mouseout');
 							nextLink.trigger('mouseover');
 						}
-					}					else {
+					} else {
 						container.find('a:eq(0)').trigger('mouseover');
 					}
 					return false;
