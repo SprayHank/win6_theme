@@ -96,8 +96,32 @@ seajs.use(['jquery/jqueryui/fg.menu'], function(jQuery) {
 	});
 
 	$('#keyword').css({margin: '0px 10px', padding: 0, float: 'left', height: 22});
-	$('#searchForm').css({height:30}).append('<input type="hidden" name="category" id="category" value="0" />');
-	$('.go').attr('value', '搜索').removeClass('go').css({border:'1px solid #333333'});
+	$('#searchForm').css({height: 30}).append('<input type="hidden" name="category" id="category" value="0" />');
+	$('.go').attr('value', '搜索').removeClass('go').css({
+		cursor: 'pointer',
+		color: '#cc8101',
+		border: '1px solid #CC8101',
+		'background-color': 'transparent',
+		'font-family': '微软雅黑',
+		'font-size': '12px',
+		padding: '2px 16px 3px',
+		float: 'left',
+		margin: 0
+	}).next().css({
+			cursor: 'pointer',
+			color: '#cc8101',
+			border: '1px solid #CC8101',
+			'background-color': 'transparent',
+			'font-family': '微软雅黑',
+			'font-size': '12px',
+			height:20,
+			paddingLeft: '16px',
+			paddingRight:'16px',
+			paddingTop:'2px',
+			float: 'left',
+			margin: '0 10px',
+			display:'block'
+		});
 
 
 //	var $ = jQuery;
